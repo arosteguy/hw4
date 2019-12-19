@@ -1,0 +1,32 @@
+.hide{
+    display:none;
+}
+#start{
+    color: white;
+    display:block;
+    border-radius: 50%;
+    background-color: black;
+    font-size: 75px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align: center;
+}
+#choices{
+    font-size: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+    background-color: peachpuff;
+    text-align: center;
+}
+.timer{
+    font-size: 25px;
+    background-color: lightgray;
+}
+h1{
+    text-align: center;
+}
+#question-title{
+    text-align: center;
+}
