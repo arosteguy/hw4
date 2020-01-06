@@ -1,4 +1,6 @@
 
+// startBtn.onclick= startQuiz;
+
 
 
 // Global Variables
@@ -10,30 +12,41 @@ var timerEl = document.getElementById("time");
 var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
 var startBtn = document.getElementById("start");
+
 var questionIndex = 0;
 var time = 120;
-// var timerId;
+var timerId;
 
-startBtn.onclick= startQuiz;
+// startBtn.onclick= startQuiz;
+
+function timerSet(){
+    time--;
+    timerEl.textContent = time;
+    
+    if (time <= 0){
+           endQuiz();
+        }
+    }
+
+
 // Main logic
 function startQuiz(){
+    //adds a class of "hide"" (from CSS) to make start screen disappear
     var hideScreen = document.getElementById("start-screen");
     hideScreen.setAttribute("class", "hide");
+    
+    //THEN
+    
+    //Removes "hide" class that exists questions, displays them
     questionsEl.removeAttribute("class");
-   var timerId = setInterval (function(){
-        
-        if (time <= 0){
-            
-        // clearInterval(timerId);
-        
-        }
-        time--;
-        timerEl.textContent = time;
-            
-    },1000);
+         
+    timerId = setInterval (timerSet, 1000);
+     
+    //need reference to time varaiable within scope of this function
+     timerEl.textContent = time;
 
     questionArray();
-}
+    }
 
 function questionArray(){
     var getQuestions = questions[questionIndex];
@@ -57,7 +70,7 @@ function questionArray(){
     
 }
 function answer(){
-    console.log("inside of answer")
+    // console.log("inside of answer")
     if(this.value!==questions[questionIndex].answer){
         time = time -15;
         if(time <0){
@@ -70,8 +83,9 @@ function answer(){
     }else{
         feedbackEl.textContent = "correct!";
     }
-    feedbackEl.setAttribute("class", "feedback");
-    setTimeout(function() {
+        feedbackEl.setAttribute("class", "feedback");
+    
+        setTimeout(function() {
         feedbackEl.setAttribute("class", "feedback hide");
     }, 1000);
 
@@ -79,32 +93,24 @@ function answer(){
     
     if(questionIndex === questions.length){
         endQuiz();
-        console.log("=length")
+        
     }else{
-console.log("length not equal")
-        startQuiz();
+
+        questionArray();
     }
-    // save high scores
+    
 }
 
-            function endQuiz(){
-//     console.log("inside end quiz")
+function endQuiz(){
+    
         clearInterval(timerId);
-//     questionsEl.setAttribute("class", "hide");
-//     endPage.removeAttribute("class", "hide");
-//     submitScore.removeAttribute("class", "hide");
+
         questionsEl.setAttribute("class", "hide");
         endPage.removeAttribute("class", "hide");
         submitScore.removeAttribute("class", "hide");
-    
-// }
+        var score = document.getElementById("final-score");
+        score.textContent("time")
+    }
 
 
-//event listeners
-startBtn.addEventListener("click", startQuiz)
-
-
-
-
-
-// startBtn.onclick= startQuiz;
+startBtn.addEventListener("click", startQuiz);

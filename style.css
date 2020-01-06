@@ -1,5 +1,5 @@
 .hide{
-    display:none;
+    display: none;
 }
 #start{
     color: white;
@@ -17,7 +17,7 @@
     display: block;
     margin-left: auto;
     margin-right:auto;
-    background-color: peachpuff;
+    
     text-align: center;
 }
 .timer{
